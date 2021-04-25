@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: bankaccount-ingress
@@ -13,10 +13,18 @@ spec:
     - http:
         paths:
           - path: /transaction-service/*
+            pathType: Prefix
             backend:
-              serviceName: transaction-service
-              servicePort: 8080
+              service:
+                name: transaction-service
+                port:
+                  number: 8080
           - path: /balance-service/*
+            pathType: Prefix
             backend:
-              serviceName: balance-service
-              servicePort: 8080    
+              service:
+                name: balance-service
+                port:
+                  number: 8080
+
+# vim: et sw=2 ts=2 sts=2 :
