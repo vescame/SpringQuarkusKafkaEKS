@@ -44,7 +44,7 @@ publish: build
 	docker push vescame/quarkus-balance-service:v1
 
 validate:
-	if [ -z "$${AWS_PROFILE}" ]; then echo 'Atribua a env var AWS_PROFILE' ; \
+	@if [ -z "$${AWS_PROFILE}" ]; then echo 'Atribua a env var AWS_PROFILE' ; \
 		exit 1 ; fi
 
 deploy-namespace: validate
