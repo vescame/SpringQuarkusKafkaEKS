@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: transaction-app
-          image: moduscreate/quarkus-transaction-service:v1
+          image: vescame/quarkus-transaction-service:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

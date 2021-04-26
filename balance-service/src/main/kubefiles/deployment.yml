@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: balance-app
-          image: moduscreate/quarkus-balance-service:v1
+          image: vescame/quarkus-balance-service:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
