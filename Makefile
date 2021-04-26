@@ -86,7 +86,7 @@ undeploy-db: validate
 apply: validate
 	kubectl apply -f $(f)
 
-deploy: deploy-namespace deploy-broker deploy-postgres deploy-transaction \
+deploy: deploy-namespace deploy-broker deploy-db deploy-transaction \
 	deploy-balance deploy-ingress
 
 undeploy: undeploy-transaction undeploy-balance undeploy-broker \
