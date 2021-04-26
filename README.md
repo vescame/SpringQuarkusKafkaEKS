@@ -1,3 +1,26 @@
+## Setup EKS Cluster
+**Requirements**
+**EKSctl**
+
+## Create
+```
+eksctl create cluster \
+  --name eks0 \
+  --region sa-east-1 \
+  --version 1.19 \
+  --nodegroup-name ng0 \
+  --node-type t2.micro \
+  --nodes 4
+```
+
+## Scaling
+```
+eksctl scale nodegroup \
+  --cluster clustername \
+  --name nodegroupname \
+  --nodes-min=1 --nodes-max=1 --nodes=1
+```
+
 ## About CQRS - Command Query Responsibility Segregation
 
 According with [Martin Folwer](https://martinfowler.com/bliki/CQRS.html) 
