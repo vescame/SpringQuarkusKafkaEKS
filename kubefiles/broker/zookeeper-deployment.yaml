@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper
+  namespace: quarkus-cqrs-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+        - image: strimzi/kafka:0.11.3-kafka-2.1.0
+          name: zookeeper
+          command: [
+            "sh", "-c",
+            "bin/zookeeper-server-start.sh config/zookeeper.properties"
+          ]
+          envFrom:
+            - configMapRef:
+                name: zookeeper-configmap
+          ports:
+            - containerPort: 2181
+              name: zookeeper
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+  namespace: quarkus-cqrs-demo
+spec:
+  selector:
+    app: zookeeper
+  ports:
+    - port: 2181
+  clusterIP: None
+
+# vim: et sw=2 ts=2 sts=2 :
