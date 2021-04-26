@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-bankaccount-configmap
+  namespace: quarkus-cqrs-demo
+data:
+  POSTGRES_USER: 'postgres'
+  POSTGRES_PASSWORD: 'postgres'
+  POSTGRES_DB: 'postgres'
+
+# vim: et sw=2 ts=2 sts=2 :

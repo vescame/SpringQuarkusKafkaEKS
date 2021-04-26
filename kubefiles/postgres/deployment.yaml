@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-bankaccount
+  namespace: quarkus-cqrs-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-bankaccount
+  template:
+    metadata:
+      labels:
+        app: db-bankaccount
+    spec:
+      containers:
+        - image: postgres:latest
+          name: db-bankaccount
+          envFrom:
+            - configMapRef:
+                name: db-bankaccount-configmap
+          ports:
+            - containerPort: 5432
+              name: postgres
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgbankaccount
+  namespace: quarkus-cqrs-demo
+spec:
+  selector:
+    app: db-bankaccount
+  ports:
+    - port: 5432
+  clusterIP: None
+
+# vim: et sw=2 ts=2 sts=2 :
